@@ -9,5 +9,5 @@ fn main() {
     // Declare third variable binding, shadows second binding of variable "shadow_num"
     let shadow_num = shadow_num * 2; 
 
-    println!("The number is {}.", shadow_num);
+    println!("The number is {}.", shadow_num); 
 }
