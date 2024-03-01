@@ -25,15 +25,15 @@ enum Age{
 // Create a tuple for the car quality with the age ("New" or "Used") and miles
 // Return a tuple with the arrow `->` syntax
 fn car_quality (miles: u32) -> (Age, u32) {
-    // Declare and initialize the return tuple value
-    // For a new car, set the miles to 0
-    // Corrected code: Define "quality"
-    // - Set the value to a "New" car
-    // - Set the mileage using the "miles" input argument
-    let quality = (Age::New, miles);
-
-    // Corrected code: Return tuple, no need for "return" keyword or semicolon
-    quality
+    // Corrected code: Check if car has accumulated miles
+    // Corrected code: Return tuple early for Used car
+    if miles > 0 {
+        return (Age::Used, miles);
+    }
+    
+    // Corrected code: Return tuple for New car, no need for "return" keyword or semicolon
+    (Age::New, miles)
+    
 }
 
 // Build a new "Car" using the values of three input arguments
@@ -42,6 +42,20 @@ fn car_quality (miles: u32) -> (Age, u32) {
 // - Convertible (boolean, true if the car is a convertible)
 // Return an instance of a "Car" struct with the arrow `->` syntax
 fn car_factory(color: String, motor: Transmission, roof: bool,miles: u32) -> Car {
+
+     if car_quality(miles).0 == Age::Used {
+        if roof {
+            println!("Preparing a used car: {:?}, {}, Hard top, {} miles", motor, color, miles);
+        } else {
+            println!("Preparing a used car: {:?}, {}, Convertible, {} miles", motor, color, miles);
+        }
+    } else {
+        if roof {
+            println!("Building a new car: {:?}, {}, Hard top, {} miles", motor, color, miles);
+        } else {
+            println!("Building a new car: {:?}, {}, Convertible, {} miles", motor, color, miles);
+        }
+    }
 
     // Create a new "Car" instance with requested characteristics
     // - Corrected code: return a "Car" struct
